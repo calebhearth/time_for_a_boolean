@@ -1,5 +1,7 @@
 require 'time_for_a_boolean/version'
 
 module TimeForABoolean
-  # Your code goes here...
+  def time_for_a_boolean(attribute)
+    define_method(attribute) { true }
+  end
 end

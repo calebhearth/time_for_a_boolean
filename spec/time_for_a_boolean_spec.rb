@@ -13,7 +13,7 @@ describe TimeForABoolean do
     expect(klass.new).to respond_to :attribute?
   end
 
-  it 'defines the attribute setter' do
+  it 'defines the attribute writer' do
     klass.time_for_a_boolean :attribute
 
     expect(klass.new).to respond_to :attribute=
@@ -43,18 +43,34 @@ describe TimeForABoolean do
 
       expect(object.attribute).to be_false
     end
-
-    def object
-      @object ||= klass.new
-    end
   end
 
   describe 'the query method' do
     it 'is an alias for the attribute method' do
       klass.time_for_a_boolean :attribute
-      object = klass.new
 
       expect(object.method(:attribute?)).to eq object.method(:attribute)
+    end
+  end
+
+  describe 'the writer method' do
+    it 'sets the timestamp to now if value is true' do
+      klass.time_for_a_boolean :attribute
+      klass.send(:attr_accessor, :attribute_at)
+
+      object.attribute = true
+
+      expect(object.attribute_at).to be_kind_of(DateTime)
+    end
+
+    it 'sets the timestamp to nil if value is false' do
+      klass.time_for_a_boolean :attribute
+      klass.send(:attr_accessor, :attribute_at)
+
+      object.attribute_at = DateTime.now
+      object.attribute = false
+
+      expect(object.attribute_at).to be_nil
     end
   end
 
@@ -63,5 +79,8 @@ describe TimeForABoolean do
       extend TimeForABoolean
     end
   end
-end
 
+  def object
+    @object ||= klass.new
+  end
+end

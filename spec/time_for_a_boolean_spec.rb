@@ -49,6 +49,15 @@ describe TimeForABoolean do
     end
   end
 
+  describe 'the query method' do
+    it 'is an alias for the attribute method' do
+      klass.time_for_a_boolean :attribute
+      object = klass.new
+
+      expect(object.method(:attribute?)).to eq object.method(:attribute)
+    end
+  end
+
   def klass
     @klass ||= Class.new do
       extend TimeForABoolean

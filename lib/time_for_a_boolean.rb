@@ -1,4 +1,6 @@
+require 'rails'
 require 'time_for_a_boolean/version'
+require 'time_for_a_boolean/railtie'
 
 module TimeForABoolean
   def time_for_a_boolean(attribute)

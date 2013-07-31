@@ -30,6 +30,20 @@ describe TimeForABoolean do
       expect(timestamp).to have_received(:nil?)
     end
 
+    it 'is true if the attribute is not nil' do
+      klass.time_for_a_boolean :attribute
+      object.stub(attribute_at: true)
+
+      expect(object.attribute).to be_true
+    end
+
+    it 'is false if the attribute is nil' do
+      klass.time_for_a_boolean :attribute
+      object.stub(attribute_at: nil)
+
+      expect(object.attribute).to be_false
+    end
+
     def object
       @object ||= klass.new
     end

@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 require 'time_for_a_boolean'
 
 describe TimeForABoolean do

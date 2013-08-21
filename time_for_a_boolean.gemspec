@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
     or subscribed.
   DESCRIPTION
   spec.summary       = 'Back boolean values with timestamps'
-  spec.homepage      = 'https://github.com/thoughtbot/time_for_a_boolean'
+  spec.homepage      = 'https://github.com/calebthompson/time_for_a_boolean'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)

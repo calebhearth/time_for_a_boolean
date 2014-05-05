@@ -75,6 +75,25 @@ describe TimeForABoolean do
 
       expect(object.attribute_at).to be_nil
     end
+
+    it 'works with other representations of true' do
+      klass.time_for_a_boolean :attribute
+      klass.send(:attr_accessor, :attribute_at)
+
+      object.attribute = '1'
+
+      expect(object.attribute_at).to be_kind_of(DateTime)
+    end
+
+    it 'works with other representations of false' do
+      klass.time_for_a_boolean :attribute
+      klass.send(:attr_accessor, :attribute_at)
+
+      object.attribute_at = DateTime.now
+      object.attribute = '0'
+
+      expect(object.attribute_at).to be_nil
+    end
   end
 
   def klass

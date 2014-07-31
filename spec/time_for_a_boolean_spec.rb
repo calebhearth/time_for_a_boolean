@@ -37,21 +37,21 @@ describe TimeForABoolean do
       klass.time_for_a_boolean :attribute
       object.stub(attribute_at: DateTime.now - 10)
 
-      expect(object.attribute).to be_true
+      expect(object.attribute).to be_truthy
     end
 
     it 'is false if the attribute is nil' do
       klass.time_for_a_boolean :attribute
       object.stub(attribute_at: nil)
 
-      expect(object.attribute).to be_false
+      expect(object.attribute).to be_falsey
     end
 
     it 'is false if the attribute time is in the future' do
       klass.time_for_a_boolean :attribute
       object.stub(attribute_at: Time.now + 86400) # one day in the future
 
-      expect(object.attribute).to be_false
+      expect(object.attribute).to be_falsey
     end
   end
 

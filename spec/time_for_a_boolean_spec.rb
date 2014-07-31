@@ -26,7 +26,7 @@ describe TimeForABoolean do
     it 'calls nil? on the backing timestamp' do
       klass.time_for_a_boolean :attribute
       timestamp = double(nil?: true)
-      object.stub(attribute_at: timestamp)
+      allow(object).to receive(:attribute_at).and_return(timestamp)
 
       object.attribute
 
@@ -35,21 +35,21 @@ describe TimeForABoolean do
 
     it 'is true if the attribute is not nil' do
       klass.time_for_a_boolean :attribute
-      object.stub(attribute_at: DateTime.now - 10)
+      allow(object).to receive(:attribute_at).and_return(DateTime.now - 10)
 
       expect(object.attribute).to be_true
     end
 
     it 'is false if the attribute is nil' do
       klass.time_for_a_boolean :attribute
-      object.stub(attribute_at: nil)
+      allow(object).to receive(:attribute_at)
 
       expect(object.attribute).to be_false
     end
 
     it 'is false if the attribute time is in the future' do
       klass.time_for_a_boolean :attribute
-      object.stub(attribute_at: Time.now + 86400) # one day in the future
+      allow(object).to receive(:attribute_at).and_return(Time.now + 86400) # one day in the future
 
       expect(object.attribute).to be_false
     end

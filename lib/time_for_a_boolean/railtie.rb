@@ -1,3 +1,5 @@
+require "rails/railtie"
+
 module TimeForABoolean
   class Railtie < ::Rails::Railtie
     initializer 'time_for_a_boolean' do

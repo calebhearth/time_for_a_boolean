@@ -65,7 +65,7 @@ methods are defined:
 | --------------- | -----------
 | `Post#deleted`  | `true` if `Post#deleted_at` is set to a value greater than `Time.current`, `false` otherwise
 | `Post#deleted?` | Alias for `Post#deleted`
-| `Post#deleted=` | Sets the timestamp to `DateTime.now` if the new value is true, and `nil` otherwise
+| `Post#deleted=` | Sets the timestamp to `Time.current` if the new value is true, and `nil` otherwise
 
 These methods allow you to use a timestamp as you would a boolean value in your
 application.

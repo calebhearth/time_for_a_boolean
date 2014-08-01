@@ -35,7 +35,7 @@ describe TimeForABoolean do
 
     it 'is true if the attribute is not nil' do
       klass.time_for_a_boolean :attribute
-      allow(object).to receive(:attribute_at).and_return(DateTime.now - 10)
+      allow(object).to receive(:attribute_at).and_return(Time.now - 10)
 
       expect(object.attribute).to be_truthy
     end
@@ -70,14 +70,14 @@ describe TimeForABoolean do
 
       object.attribute = true
 
-      expect(object.attribute_at).to be_kind_of(DateTime)
+      expect(object.attribute_at).to be_kind_of(Time)
     end
 
     it 'sets the timestamp to nil if value is false' do
       klass.time_for_a_boolean :attribute
       klass.send(:attr_accessor, :attribute_at)
 
-      object.attribute_at = DateTime.now
+      object.attribute_at = Time.now
       object.attribute = false
 
       expect(object.attribute_at).to be_nil
@@ -89,14 +89,14 @@ describe TimeForABoolean do
 
       object.attribute = '1'
 
-      expect(object.attribute_at).to be_kind_of(DateTime)
+      expect(object.attribute_at).to be_kind_of(Time)
     end
 
     it 'works with other representations of false' do
       klass.time_for_a_boolean :attribute
       klass.send(:attr_accessor, :attribute_at)
 
-      object.attribute_at = DateTime.now
+      object.attribute_at = Time.now
       object.attribute = '0'
 
       expect(object.attribute_at).to be_nil

@@ -1,6 +1,7 @@
-require 'active_record/connection_adapters/column'
-require 'time_for_a_boolean/version'
-require 'time_for_a_boolean/railtie'
+require "active_support/core_ext/module/delegation"
+require "active_record/connection_adapters/column"
+require "time_for_a_boolean/version"
+require "time_for_a_boolean/railtie"
 
 module TimeForABoolean
   def time_for_a_boolean(attribute)

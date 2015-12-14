@@ -53,6 +53,39 @@ describe TimeForABoolean do
 
       expect(object.attribute).to be_falsey
     end
+
+    context 'when the user has defined their own attribute name' do
+      it 'calls nil? on the backing value' do
+        klass.time_for_a_boolean :attribute, :attribute_on
+        date = double(nil?: true)
+        allow(object).to receive(:attribute_on).and_return(date)
+
+        object.attribute
+
+        expect(date).to have_received(:nil?)
+      end
+
+      it 'is true if the attribute is not nil' do
+        klass.time_for_a_boolean :attribute, :attribute_on
+        allow(object).to receive(:attribute_on).and_return(Date.current - 10)
+
+        expect(object.attribute).to be_truthy
+      end
+
+      it 'is false if the attribute is nil' do
+        klass.time_for_a_boolean :attribute, :attribute_on
+        allow(object).to receive(:attribute_on)
+
+        expect(object.attribute).to be_falsey
+      end
+
+      it 'is false if the attribute date is in the future' do
+        klass.time_for_a_boolean :attribute, :attribute_on
+        allow(object).to receive(:attribute_on).and_return(Date.current + 1)
+
+        expect(object.attribute).to be_falsey
+      end
+    end
   end
 
   describe 'the query method' do

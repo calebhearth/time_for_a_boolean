@@ -4,17 +4,19 @@ require "time_for_a_boolean/version"
 require "time_for_a_boolean/railtie"
 
 module TimeForABoolean
-  def time_for_a_boolean(attribute)
+  def time_for_a_boolean(attribute, field="#{attribute}_at")
     define_method(attribute) do
-      !send("#{attribute}_at").nil? &&
-        send("#{attribute}_at") <= -> { Time.current }.()
+      !send(field).nil? && send(field) <= -> { Time.current }.()
     end
+
     alias_method "#{attribute}?", attribute
+
+    setter_attribute = "#{field}="
     define_method("#{attribute}=") do |value|
       if ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(value)
-        send("#{attribute}_at=", -> { Time.current }.())
+        send(setter_attribute, -> { Time.current }.())
       else
-        send("#{attribute}_at=", nil)
+        send(setter_attribute, nil)
       end
     end
   end

@@ -1,9 +1,9 @@
 Time for A Boolean
 ==================
 
-[![Build Status](https://api.travis-ci.org/calebthompson/time_for_a_boolean.png?branch=master)](https://travis-ci.org/calebthompson/time_for_a_boolean)
-[![Code Climate](https://codeclimate.com/github/calebthompson/time_for_a_boolean.png)](https://codeclimate.com/github/calebthompson/time_for_a_boolean)
-[![Coverage Status](https://coveralls.io/repos/calebthompson/time_for_a_boolean/badge.png)](https://coveralls.io/r/calebthompson/time_for_a_boolean)
+[![Build Status](https://api.travis-ci.org/calebthompson/time_for_a_boolean.svg?branch=master)](https://travis-ci.org/calebthompson/time_for_a_boolean)
+[![Code Climate](https://codeclimate.com/github/calebthompson/time_for_a_boolean.svg)](https://codeclimate.com/github/calebthompson/time_for_a_boolean)
+[![Coverage Status](https://coveralls.io/repos/calebthompson/time_for_a_boolean/badge.svg)](https://coveralls.io/r/calebthompson/time_for_a_boolean)
 
 
 > Sally: Hey, we need to add a flag to Post

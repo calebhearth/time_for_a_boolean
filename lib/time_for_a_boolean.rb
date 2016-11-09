@@ -1,5 +1,6 @@
 require "active_support/core_ext/module/delegation"
-require "active_record/connection_adapters/column"
+require "active_support/core_ext/time/calculations"
+require "active_model/type"
 require "time_for_a_boolean/version"
 require "time_for_a_boolean/railtie"
 
@@ -13,10 +14,10 @@ module TimeForABoolean
 
     setter_attribute = "#{field}="
     define_method("#{attribute}=") do |value|
-      if ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(value)
-        send(setter_attribute, -> { Time.current }.())
-      else
+      if ActiveModel::Type::Boolean::FALSE_VALUES.include?(value)
         send(setter_attribute, nil)
+      else
+        send(setter_attribute, -> { Time.current }.())
       end
     end
   end

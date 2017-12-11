@@ -63,7 +63,7 @@ methods are defined:
 
 | Method          | Description
 | --------------- | -----------
-| `Post#deleted`  | `true` if `Post#deleted_at` is set to a value greater than `Time.current`, `false` otherwise
+| `Post#deleted`  | `true` if `Post#deleted_at` is set to a time before `Time.current`, `false` otherwise
 | `Post#deleted?` | Alias for `Post#deleted`
 | `Post#deleted=` | Sets the timestamp to `Time.current` if the new value is true, and `nil` otherwise
 

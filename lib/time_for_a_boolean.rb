@@ -20,5 +20,9 @@ module TimeForABoolean
         send(setter_attribute, -> { Time.current }.())
       end
     end
+
+    define_method("#{attribute}!") do
+      send(setter_attribute, -> { Time.current }.())
+    end
   end
 end

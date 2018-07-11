@@ -22,6 +22,12 @@ describe TimeForABoolean do
     expect(klass.new).to respond_to :attribute=
   end
 
+  it 'defines the bangable method to act as an implicit writer' do
+    klass.time_for_a_boolean :attribute
+
+    expect(klass.new).to respond_to :attribute!
+  end
+
   describe 'attribute method' do
     it 'calls nil? on the backing timestamp' do
       klass.time_for_a_boolean :attribute
@@ -133,6 +139,17 @@ describe TimeForABoolean do
       object.attribute = '0'
 
       expect(object.attribute_at).to be_nil
+    end
+  end
+
+  describe 'the bangable method' do
+    it 'sets the timestamp to now' do
+      klass.time_for_a_boolean :attribute
+      klass.send(:attr_accessor, :attribute_at)
+
+      object.attribute!
+
+      expect(object.attribute_at).to be_kind_of(Time)
     end
   end
 

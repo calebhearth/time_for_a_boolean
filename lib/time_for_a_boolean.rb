@@ -1,3 +1,4 @@
+require "active_support"
 require "active_support/core_ext/module/delegation"
 require "active_support/core_ext/time/calculations"
 require "active_model/type"

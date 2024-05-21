@@ -6,19 +6,23 @@ require "time_for_a_boolean/version"
 Gem::Specification.new do |spec|
   spec.name = "time_for_a_boolean"
   spec.version = TimeForABoolean::VERSION
-  spec.authors = ["Caleb Thompson"]
-  spec.email = ["caleb@calebthompson.io"]
+  spec.authors = ["Caleb Hearth"]
+  spec.email = ["caleb@calebhearth.com"]
   spec.description = <<-DESCRIPTION
     Use timestamp values to represent boolean data such as deleted, published,
     or subscribed.
   DESCRIPTION
   spec.summary = "Back boolean values with timestamps"
-  spec.homepage = "https://github.com/calebthompson/time_for_a_boolean"
+  spec.homepage = "https://github.com/calebhearth/time_for_a_boolean"
   spec.license = "MIT"
 
   spec.files = `git ls-files`.split($/)
   spec.test_files = spec.files.grep(%r{^spec/})
   spec.require_paths = ["lib"]
+
+  spec.metadata = {
+    "funding-uri" => "https://github.com/sponsors/calebhearth"
+  }
 
   spec.add_dependency "activerecord"
   spec.add_dependency "railties"

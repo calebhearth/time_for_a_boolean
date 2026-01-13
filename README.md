@@ -81,6 +81,8 @@ Okay... why?
 Other Options
 -------------
 
+### Using a different attribute name
+
 If you have a date or time column that does not follow the `attribute_at` convention,
 you can specify the attribute name:
 
@@ -91,3 +93,23 @@ end
 ```
 
 This is especially useful when using date only columns.
+
+### Scopes to filter records
+
+[ActiveRecord Scopes](https://guides.rubyonrails.org/active_record_querying.html#scopes)
+can be used to filter records based on the attribute.  These are not defined by
+default, but can be added by passing the `scopes: true` option:
+
+```ruby
+class Post < ActiveRecord::Base
+  time_for_a_boolean :deleted, scopes: true
+  ...
+end
+```
+
+This will define the following scopes:
+
+| Scope                | Description |
+| -------------------- | ----------- |
+| `Post.deleted`       | Returns all posts where `deleted_at` is set to a time before `Time.current`
+| `Post.not_deleted`   | Returns all posts where `deleted_at` is unset or in the future

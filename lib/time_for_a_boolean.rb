@@ -17,13 +17,13 @@ module TimeForABoolean
     define_method(:"#{attribute}=") do |value|
       if ActiveModel::Type::Boolean::FALSE_VALUES.include?(value)
         send(setter_attribute, nil)
-      else
-        send(setter_attribute, -> { Time.current }.())
+      elsif send(field).nil?
+        send(:"#{attribute}!")
       end
     end
 
     define_method(:"#{attribute}!") do
-      send(:"#{attribute}=", true)
+      send(setter_attribute, -> { Time.current }.())
     end
 
     if scopes && respond_to?(:where)

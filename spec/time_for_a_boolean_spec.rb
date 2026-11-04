@@ -112,6 +112,14 @@ describe TimeForABoolean do
       expect(object.attribute_at).to be_kind_of(Time)
     end
 
+    it 'does not update a present timestamp if value is true' do
+      klass.time_for_a_boolean :attribute
+      klass.send(:attr_accessor, :attribute_at)
+      object.attribute = true
+
+      expect { object.attribute = true }.not_to change { object.attribute_at }
+    end
+
     it 'sets the timestamp to nil if value is false' do
       klass.time_for_a_boolean :attribute
       klass.send(:attr_accessor, :attribute_at)
